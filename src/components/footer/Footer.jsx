@@ -24,6 +24,13 @@ function Footer() {
             <p className="text-gray-400 max-w-xs">
               Strategy. Care. Growth. Guaranteed.
             </p>
+            {/* <iframe
+              src="https://www.google.com/maps/place/Gomti+Nagar,+Lucknow,+Uttar+Pradesh/"
+              className="w-full h-full"
+              loading="lazy"
+              allowFullScreen
+              referrerpolicy="no-referrer-when-dowgrade"
+            ></iframe> */}
           </div>
 
           {/* Quick Links */}
@@ -58,7 +65,7 @@ function Footer() {
                   to="/Ourservice"
                   className="hover:text-white transition-colors"
                 >
-                  Our Services
+                  Our_Services
                 </NavLink>
               </li>
               <li>
@@ -66,7 +73,7 @@ function Footer() {
                   to="/Contact-Us"
                   className="hover:text-white transition-colors"
                 >
-                  Contact Us
+                  Contact_Us
                 </NavLink>
               </li>
             </ul>
@@ -119,16 +126,16 @@ function Footer() {
         </div>
       </footer>
       <footer className="bg-gray-900  fixed bottom-0 left-0 right-0   text-gray-200 py-7  md:hidden">
-        <ul className="flex justify-center  gap-3 bg-violet-80 md:hidden">
+        <ul className="flex justify-center  gap-9 bg-violet-80 md:hidden">
           <li>
             <NavLink
               to="/"
               className={({ isActive }) =>
                 `block py-2 pr-4 pl-3 duration-200 ${
                   isActive
-                    ? "text-pink-700 rounded-3xl animate-bounce"
+                    ? "text-orange-700 rounded-3xl animate-bounce"
                     : "text-grey-700"
-                } border-b-4   lg;hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                } border-b-4  hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
               }
             >
               <FaHome />{" "}
@@ -142,7 +149,7 @@ function Footer() {
                   isActive
                     ? "text-orange-700 rounded-3xl animate-bounce "
                     : "text-grey-700"
-                } border-b-4   lg;hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                } border-b-4   hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
               }
             >
               <FaInfoCircle />{" "}
@@ -157,7 +164,7 @@ function Footer() {
                   isActive
                     ? "text-orange-700 rounded-3xl animate-bounce"
                     : "text-grey-700"
-                } border-b-4  hover: lg;hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                } border-b-4 hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
               }
             >
               <FaBriefcase />{" "}
@@ -171,7 +178,7 @@ function Footer() {
                   isActive
                     ? "text-orange-700 rounded-3xl animate-bounce"
                     : "text-grey-700"
-                } border-b-4  hover:lg;hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                } border-b-4 hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
               }
             >
               <FaServicestack />{" "}
@@ -186,7 +193,7 @@ function Footer() {
                   isActive
                     ? "text-orange-700 rounded-3xl animate-bounce"
                     : "text-grey-700"
-                } border-b-4  hover:lg;hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                } border-b-4  hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
               }
             >
               <FaPhoneAlt />{" "}

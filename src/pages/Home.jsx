@@ -47,14 +47,7 @@ function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1, duration: 0.8 }}
             className="mt-8 flex flex-col md:flex-row gap-4"
-          >
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-blue-500/50">
-              🚀 Get Your Free Growth Strategy
-            </button>
-            <button className="border border-white/70 hover:bg-white hover:text-black px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300">
-              💬 Talk to a Brand Expert
-            </button>
-          </motion.div>
+          ></motion.div>
         </section>
 
         {/* 🔹 Floating Scroll Animation */}
@@ -125,7 +118,6 @@ function Home() {
           </div>
         </section>
       </div>
-
     </>
   );
 }

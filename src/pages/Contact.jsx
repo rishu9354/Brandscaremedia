@@ -8,12 +8,13 @@ import {
   FaFacebook,
 } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import axiosClient from "../api/apiClient";
 
 function Contact() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+  // 1. backend integration code
+  const [backendStatus, setBackendStatus] = useState("Checking connection");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,27 +23,70 @@ function Contact() {
     goal: "",
     message: "",
   });
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    // 2. backend health check
+    const checkServerHealth = async () =>{
+      try {
+        const response = await axiosClient.get("/api");
+        console.log("Backend Response:",response.data);
+        setBackendStatus("Server Connected..")
+        
+      } catch (error) {
+        console.error("Backend Connection Error:", error);
+        setBackendStatus("Server Disconnected! (Check Console)");
+      }
+    }
+    checkServerHealth();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 3. backend post api call start
+    // loading start 
+    setIsSubmitting(true);
+
+    try {
+      const response = await axiosClient.post("/add",formData);
+
+      if(response.status === 200 || response.status === 201){
+        alert("Your strategy request has been sent successfully!");
+        // form reset
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          brand: "",
+          goal: "",
+          message: "",
+        });
+
+
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to send message. Please try again.");
+    }
+    finally{
+      setIsSubmitting(false);
+    }
     // form submission logic here (API call or email service)
-    alert("Your strategy request has been sent!");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      brand: "",
-      goal: "",
-      message: "",
-    });
   };
   return (
     <>
       <div className="min-h-screen  bg-gray-50 py-16 px-6 md:px-20">
+        {/* backend status checking  */}
+        <div className={`text-center text-sm font-mono mb-4 ${backendStatus.includes('Connected') ? 'text-green-600' : 'text-red-600'}`}>
+           Status: {backendStatus}
+        </div>
+
         {/* Heading */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">

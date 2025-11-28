@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import img from "../../src/assets/img2.jpg";
+import ECB from "../../src/assets/graph.svg";
+import fl from "../../src/assets/ecommerce.svg";
+import hc from "../../src/assets/Planning.svg";
+import bg from "../../src/assets/peak_background.svg";
 
 function Profile() {
   useEffect(() => {
@@ -16,41 +21,59 @@ function Profile() {
     }),
   };
 
-  const caseStudies = [
-    {
-      title: "E-Commerce Brand",
-      challenge: "Low conversions from Meta Ads.",
-      strategy: "Funnel-based retargeting + creative optimization.",
-      result: "↑240% ROAS & 3x increase in sales.",
-    },
-    {
-      title: "Healthcare Client",
-      challenge: "Negative press impacting trust.",
-      strategy: "ORM + Review Generation + PR articles.",
-      result: "95% reduction in negative sentiment.",
-    },
-    {
-      title: "Fashion Label",
-      challenge: "Low organic reach & engagement.",
-      strategy: "SMO + Influencer collaborations.",
-      result: "4x engagement boost in 60 days.",
-    },
-    // Add more case studies if needed
-  ];
+  const caseStudies = useMemo(
+    () => [
+      {
+        title: "E-Commerce Brand",
+        challenge: "Low conversions from Meta Ads.",
+        strategy: "Funnel-based retargeting + creative optimization.",
+        result: "↑240% ROAS & 3x increase in sales.",
+        img: ECB,
+      },
+      {
+        title: "Healthcare Client",
+        challenge: "Negative press impacting trust.",
+        strategy: "ORM + Review Generation + PR articles.",
+        result: "95% reduction in negative sentiment.",
+        img: hc,
+      },
+      {
+        title: "Fashion Label",
+        challenge: "Low organic reach & engagement.",
+        strategy: "SMO + Influencer collaborations.",
+        result: "4x engagement boost in 60 days.",
+        img: fl,
+      },
+      // Add more case studies if needed
+    ],
+    []
+  );
   return (
     <>
-      <div className="min-h-screen scroll-behavor: scroll-smooth bg-gray-50 py-16 px-6 md:px-20">
+      <div className=" min-h-screen scroll-behavor: scroll-smooth bg-gray-700 py-16 px-6 md:px-20">
+        <div
+          className=" absolute inset-0
+          
+          
+          bg-cover bg-center bg-no-repeat opacity-50"
+          style={{
+            backgroundImage: ` url(${img})`,
+          }}
+        >
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
+
         {/* Heading */}
         <motion.div
           className="text-center max-w-3xl mx-auto mb-12"
-          // initial="hidden"
+          initial="hidden"
           animate="visible"
           variants={fadeUp}
         >
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+          <h1 className="text-4xl font-bold text-sky-500 mb-4">
             Real Brands. Real Stories. Real Results.
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-orange-400 text-2xl">
             See how our strategies have helped businesses scale their reach,
             reputation, and revenue — all through one integrated digital growth
             system.
@@ -58,29 +81,41 @@ function Profile() {
         </motion.div>
 
         {/* Case Studies Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="skew-y-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {caseStudies.map((caseStudy, index) => (
             <motion.div
               key={index}
-              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow"
+              className=" p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow"
+              style={{
+                backgroundImage: ` url(${bg}) `,
+              }}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
               custom={index + 1}
             >
-              <h2 className="text-2xl font-semibold text-gray-800 mb-3">
+              <img
+                src={caseStudy.img}
+                alt={caseStudy.title}
+                className=" w-24 h-24 md:w-48 md:h-59 md:rounded-md rounded-full mx-auto  skew-x-10  shadow-2xl transition-shadow"
+              />
+              <h2 className="text-2xl font-semibold text-stone-100 mb-3">
                 {caseStudy.title}
               </h2>
-              <p className="text-gray-500 mb-2">
-                <span className="font-semibold">Challenge:</span>{" "}
+              <p className="text-stone-400 mb-2">
+                <span className="text-stone-300  font-semibold">
+                  Challenge:
+                </span>{" "}
                 {caseStudy.challenge}
               </p>
-              <p className="text-gray-500 mb-2">
+              <p className="text-stone-400 mb-2">
                 <span className="font-semibold">Strategy:</span>{" "}
                 {caseStudy.strategy}
               </p>
-              <p className="text-gray-700 font-bold mt-3">{caseStudy.result}</p>
+              <p className="text-stone-400 font-bold mt-3">
+                {caseStudy.result}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -93,17 +128,7 @@ function Profile() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
           viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            Start Your Growth Story With Us
-          </h2>
-          <a
-            href="/contact"
-            className="inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-md hover:bg-blue-700 transition-transform transform hover:scale-105"
-          >
-            🚀 Book Your Free Strategy Call
-          </a>
-        </motion.div>
+        ></motion.div>
       </div>
     </>
   );
